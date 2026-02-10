@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Digital Resume of Rachit Bharti">
+<title>Rachit Bharti | HR Professional</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    color: #1f2937;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fillBar {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeInLeft {
+    animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fadeInRight {
+    animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.5s ease-out forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; opacity: 0; }
+.stagger-2 { animation-delay: 0.2s; opacity: 0; }
+.stagger-3 { animation-delay: 0.3s; opacity: 0; }
+.stagger-4 { animation-delay: 0.4s; opacity: 0; }
+.stagger-5 { animation-delay: 0.5s; opacity: 0; }
+
+/* Card Hover Effects */
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Navigation */
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+nav a {
+    position: relative;
+    color: #4b5563;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2563eb;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #2563eb;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Profile Image */
+.profile-img {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 4px solid #2563eb;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+/* Skill Bars */
+.skill-bar {
+    background: #e5e7eb;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+    position: relative;
+}
+
+.skill-fill {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    height: 100%;
+    border-radius: 10px;
+    animation: fillBar 1.5s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Buttons */
+.universal-btn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.universal-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.universal-btn:hover::before {
+    left: 100%;
+}
+
+.universal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.universal-btn:active {
+    transform: translateY(0);
+}
+
+/* Dark Mode Toggle */
+.dark-toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+    background: #e5e7eb;
+    transform: rotate(180deg);
+}
+
+/* Section Headers */
+.section-header {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    border-radius: 2px;
+}
+
+/* Experience Timeline */
+.timeline-item {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 32px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #2563eb;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 4px #e5e7eb;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 24px;
+    width: 2px;
+    height: calc(100% + 8px);
+    background: #e5e7eb;
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+/* Info Items */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    padding-left: 8px;
+}
+
+.info-item:hover {
+    background: #f9fafb;
+    transform: translateX(4px);
+}
+
+.info-item i {
+    color: #2563eb;
+    width: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Dark Mode Styles */
+body.dark {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    color: #f3f4f6;
+}
+
+body.dark .card {
+    background: #374151;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.dark nav {
+    background: rgba(55, 65, 81, 0.95);
+}
+
+body.dark nav a {
+    color: #d1d5db;
+}
+
+body.dark nav a:hover {
+    color: #60a5fa;
+}
+
+body.dark .skill-bar {
+    background: #4b5563;
+}
+
+body.dark .info-item:hover {
+    background: #4b5563;
+}
+
+body.dark .dark-toggle {
+    background: #4b5563;
+}
+
+body.dark .dark-toggle:hover {
+    background: #6b7280;
+}
+
+body.dark .timeline-item::before {
+    background: #60a5fa;
+    border-color: #374151;
+    box-shadow: 0 0 0 4px #4b5563;
+}
+
+body.dark .timeline-item::after {
+    background: #4b5563;
+}
+
+body.dark p {
+    color: #d1d5db;
+}
+
+body.dark .text-gray-600 {
+    color: #d1d5db;
+}
+
+body.dark .text-gray-500 {
+    color: #9ca3af;
+}
+
+body.dark .text-gray-800 {
+    color: #f3f4f6;
+}
+
+body.dark .bg-blue-50 {
+    background: #1e3a5f;
+}
+
+body.dark .bg-blue-50:hover {
+    background: #2d4a70;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 16px;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    opacity: 0;
+}
+
+.loaded {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body class="text-gray-800">
+
+<nav class="sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <ul class="flex space-x-8">
+            <li><a href="#about" class="text-decoration-none">About</a></li>
+            <li><a href="#education" class="text-decoration-none">Education</a></li>
+            <li><a href="#experience" class="text-decoration-none">Experience</a></li>
+        </ul>
+        <button onclick="toggleDarkMode()" class="dark-toggle">
+            <i class="fas fa-moon text-xl"></i>
+        </button>
+    </div>
+</nav>
+
+<div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+
+    <!-- Sidebar -->
+    <aside class="space-y-6">
+
+        <div class="card p-8 text-center animate-fadeInLeft stagger-1">
+            <img src="hr.jpeg" 
+                 class="profile-img w-36 h-36 mx-auto rounded-full object-cover"/>
+            <h1 class="text-3xl font-bold mt-6 mb-2">Rachit Bharti</h1>
+            <h2 class="text-lg text-blue-600 font-medium">HR Manger</h2>
+        </div>
+
+        <div class="card p-6 animate-fadeInLeft stagger-2">
+            <h3 class="section-header text-xl font-bold">Personal Info</h3>
+            <div class="space-y-1 mt-6">
+                <div class="info-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>12 Feb 1993</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-language"></i>
+                    <span>English, Hindi, Punjabi</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Badarpur Border, New Delhi</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>7011787979</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="691b080a01001d471b0c0d585b290e04080005470a0604">[email&#160;protected]</a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-6 animate-fadeInLeft stagger-3">
+            <h3 class="section-header text-xl font-bold">Core Skills</h3>
+            <div class="space-y-4 mt-6">
+                <div>
+                    <label class="font-medium text-sm">Recruitment & Hiring</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-medium text-sm">Audits</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-medium text-sm">Payroll & Attendance</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-medium text-sm">Statutory Compliance</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-medium text-sm">Employee Relations</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:100%"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="font-medium text-sm">MS Office & ERP</label>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-6 text-center animate-fadeInLeft stagger-4">
+            <a href="mailto:rachit.red12@gmail.com" class="universal-btn" style="cursor: pointer;">
+                <i class="fas fa-envelope mr-2"></i>Email Me
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="md:col-span-2 space-y-6">
+
+        <section id="about" class="card p-8 animate-fadeInRight stagger-1">
+            <h3 class="section-header text-2xl font-bold">About Me</h3>
+            <p class="text-gray-600 leading-relaxed mt-4">
+                HR professional with 14+ years of experience in recruitment, payroll, statutory compliance,
+                employee relations and workforce administration in export house environments. Passionate about
+                creating efficient HR processes and fostering positive workplace cultures.
+            </p>
+        </section>
+
+        <section id="education" class="card p-8 animate-fadeInRight stagger-2">
+            <h3 class="section-header text-2xl font-bold">Education</h3>
+            
+            <div class="space-y-4 mt-6">
+                <div class="p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                    <p class="font-bold text-lg">MBA HR & Finance</p>
+                    <p class="text-gray-600">NIMS University • 2020</p>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                    <p class="font-bold text-lg">M.Com</p>
+                    <p class="text-gray-600">IGNOU • 2017</p>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                    <p class="font-bold text-lg">B.Com</p>
+                    <p class="text-gray-600">IGNOU • 2014</p>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                    <p class="font-bold">12th CBSE Commerce • 2011</p>
+                </div>
+                
+                <div class="p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                    <p class="font-bold">10th CBSE • 2009</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="card p-8 animate-fadeInRight stagger-3">
+            <h3 class="section-header text-2xl font-bold">Work Experience</h3>
+            
+            <div class="mt-8">
+                <div class="timeline-item">
+                    <h4 class="text-blue-600 font-bold text-lg">HR Officer</h4>
+                    <p class="font-semibold text-gray-800">Gend Silaee Pvt Ltd</p>
+                    <p class="text-gray-500 text-sm mb-3">May 2024 – Nov 2025</p>
+                    <ul class="list-disc ml-5 space-y-2 text-gray-600">
+                        <li>To maintain Recruitment policy as per our company requirement.</li>
+                        <li>To hiring the recruitment through Newspaper, Job portal, Internal & External   
+                            Reliable resources and placement agencies.</li> 
+                        <li>Joining formalities of new appointments.</li>
+                        <li>Time office Management.</li>
+                        <li>To handle worker grievances, disciplinary action, warning letter, show cause   
+                            Notice, domestic enquiry and Termination.</li>
+                        <li>To Handle All Payroll process like [New joining Employee’s Entry in data base, Daily Attendance monitoring, Preparation Mustroll Report, Salary& Wages, Salary Slip, Maintaining & updating Leave Record (CL, SL& EL), Preparation of ESI& PF challan, Labor welfare return, Bonus and Full& Final process Employee’s with the help of ERP server.</li>
+                        <li>To maintain all personnel files, factory License & factory Register’s Etc.</li>
+                        <li>Issue warning letter against absenteeism, late coming& using prohibited things.</li>
+                        <li>Formalities of Full & Final Settlement of employee’s.</li>
+                        <li>Handling the security.</li>
+                        <li>Staff & Workers Increment Procedures.</li>
+                        <li>To handle all the statuary compliances.</li>
+                        <li>To conduct Compliance Audit being performed by buyer/third party (Social  
+                            And Technical) through the Auditors.</li>
+                    </p>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4 class="text-blue-600 font-bold text-lg">HR Executive</h4>
+                    <p class="font-semibold text-gray-800">TNR International</p>
+                    <p class="text-gray-500 text-sm mb-3">Jul 2013 – Apr 2024</p>
+                    <ul class="list-disc ml-5 space-y-2 text-gray-600">
+                        <li>Manage recruitment policy and hiring through newspapers, job portals, agencies, and internal sources, including onboarding and joining formalities.</li>
+                        <li>Handle time office operations, attendance tracking, payroll processing, leave records, ESI/PF, bonus, full & final settlements using ERP.</li> 
+                        <li>Maintain personnel records, factory licenses, statutory registers, and ensure compliance with labor laws and statutory requirements.</li>
+                        <li>Address employee relations including grievances, disciplinary actions, warning letters, domestic enquiries, terminations, and security management.</li>
+                        <li>Conduct increment procedures and coordinate social and technical compliance audits with buyers and third-party auditors.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4 class="text-blue-600 font-bold text-lg">HR Executive</h4>
+                    <p class="font-semibold text-gray-800">Shubh Infotech</p>
+                    <p class="text-gray-500 text-sm mb-3">Jan 2012 – May 2013</p>
+                    <ul class="list-disc ml-5 space-y-2 text-gray-600">
+                        <li>Employee onboarding and payroll</li>
+                        <li>Statutory compliance and administration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<footer class="text-center py-8 text-gray-600">
+    <p>&copy; 2026 Rachit Bharti. All rights reserved.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggleDarkMode() {
+    const body = document.body;
+    const icon = document.querySelector('.dark-toggle i');
+    
+    body.classList.toggle('dark');
+    
+    if (body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('darkMode', 'disabled');
+    }
+}
+
+// Load dark mode preference
+document.addEventListener('DOMContentLoaded', () => {
+    const darkMode = localStorage.getItem('darkMode');
+    const icon = document.querySelector('.dark-toggle i');
+    
+    if (darkMode === 'enabled') {
+        document.body.classList.add('dark');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+    
+    // Smooth scroll with offset
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.card').forEach(card => {
+        observer.observe(card);
+    });
+});
+</script>
+
+</body>
+</html>
